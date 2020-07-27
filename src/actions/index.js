@@ -12,6 +12,10 @@ export const fetchPostsAndUsers = () => async (dispatch, getState) => {
   // fetchPosts() will be invoked by middleware
   await dispatch(fetchPosts());
 
+  // use lodash chain for a more elegant solution
+  // const userIds = _.uniq(_.map(getState().posts, "userId"));
+  // userIds.forEach(id => dispatch(fetchUser(id)));
+
   _.chain(getState().posts)
     .map("userId")
     .uniq()
